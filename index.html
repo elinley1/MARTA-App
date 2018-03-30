@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Collapsible sidebar using Bootstrap 3</title>
+        <title>MARTA</title>
 
          <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -14,39 +14,46 @@
     </head>
     <body>
 
-
-
-        <div class="wrapper">
+        <div class="wrapper">   
             <!-- Sidebar Holder -->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <h3>Bootstrap Sidebar</h3>
+                    <h3>Enter Your Location</h3>
                 </div>
 
                 <ul class="list-unstyled components">
-                    <p>Dummy Heading</p>
-                    <li class="active">
-                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
-                    <li>
-                        <a href="#">About</a>
-                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
-                        <ul class="collapse list-unstyled" id="pageSubmenu">
-                    <li>
-                        <a href="#">Portfolio</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
-                </ul>
+                        <div class="form-group">
+                                <label for="usr">Street Address:</label>
+                                <input type="text" class="form-control" id="usr">
+                              </div>
+                        <div class="form-group">
+                                <label for="city">City:</label>
+                                <input type="text" class="form-control" id="city">
+                              </div>
+                        <div class="form-group">
+                                <label for="zip">Zip</label>
+                                <input type="text" class="form-control" id="zip">
 
-                <ul class="list-unstyled CTAs">
-                    <li><a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a></li>
-                </ul>
+                        </div>
+                        <div class="sidebar-header">
+                            <h3>What services are you looking for?</h3>
+                        </div>
+        
+                    <li class="active">
+                        <a href="#food">Food</a>
+                    </li>
+
+                    <li class="active">
+                        <a href="#house">Housing</a>
+                    </li>
+
+                    <li class="active">
+                        <a href="#clothes">Clothes</a>
+                    </li>
             </nav>
 
             <!-- Page Content Holder -->
             <div id="content">
-
                 <nav class="navbar navbar-default">
                     <div class="container-fluid">
 
@@ -56,6 +63,12 @@
                                 <span></span>
                                 <span></span>
                             </button>
+
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic culpa voluptate earum quibusdam quasi qui perspiciatis expedita ducimus molestias? Similique quas adipisci possimus quidem temporibus illo natus ipsum molestiae minus.
+                            Doloremque recusandae dolorem quos! Debitis, expedita et in architecto illo fugiat ex, cum itaque velit voluptate neque repellendus corrupti! Fugiat facilis blanditiis dolor expedita exercitationem harum sunt cumque dolore magnam?
+                            Odit provident incidunt amet libero omnis doloribus atque repellendus necessitatibus cum quod temporibus similique voluptas, totam, quis laboriosam? Modi ut laborum quidem quam in incidunt nam voluptas numquam pariatur quae.
+                            Molestiae, molestias exercitationem labore consequuntur aspernatur placeat ullam quibusdam aliquid eveniet maiores vitae dolores? Magnam doloribus suscipit iusto non mollitia facilis! Neque, saepe omnis perferendis maxime quas veritatis ab rem!
+                            Est quae error eligendi voluptatum voluptatibus rem quos corporis, illo non ea quo deleniti ipsum vel unde! Nostrum temporibus at iure, aliquid, recusandae odit minima id eos, ex dolores delectus!</p>
                         </div>
 
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -69,6 +82,7 @@
             </div>
         </div>
 
+    </div>
 
 
 
@@ -79,12 +93,15 @@
          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
          <script type="text/javascript">
+
              $(document).ready(function () {
                  $('#sidebarCollapse').on('click', function () {
                      $('#sidebar').toggleClass('active');
                      $(this).toggleClass('active');
                  });
              });
+
+
          </script>
     </body>
 </html>
