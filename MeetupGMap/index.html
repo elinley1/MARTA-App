@@ -5,12 +5,11 @@
     <meta charset="utf-8">
     <title>Meetup</title>
     <!-- <link href="style.css" rel="stylesheet"> -->
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAexitnWheLWUW-YctUMyxtoKbdOsDrnxQ&callback=initMap"></script>
-    
-    <script type="text/javascript" src="meetup.js"></script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <script type="text/javascript" src="meetUp.js"></script>
       
    
     </head>
@@ -37,16 +36,7 @@ $(document).ready((function(){
     }
     $(window).bind('gMapsLoaded', initialize);
     loadGoogleMaps();
-
-    function meetUpEvents() {
-        
-    }
-
-
-
 }));​
-
-
 
 
 </script>   
