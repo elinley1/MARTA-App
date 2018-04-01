@@ -13,19 +13,22 @@
             }, {});
             
             function fetchEvents(url) {
-             
+              
               $.ajax({
                 url: url, 
                 success: renderEvents,
                
+                dataType: 'jsonp'
               }); 
             }
             
             function renderEvents(response) {
               
               var renderedHTML = templates['events'](response);
+            
               $('#events-container').html(renderedHTML);
             }
+            
             
             fetchEvents(signedURL);
           });
