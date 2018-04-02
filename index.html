@@ -5,13 +5,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Collapsible sidebar using Bootstrap 3</title>
+        <title>MMA</title>
 
          <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <!-- Our Custom CSS -->
         <link rel="stylesheet" href="style.css">
+     <style>
+         #maps {
+             height: 100%
+
+         }
+     
+     
+     
+     </style>
+
     </head>
+
+
     <body>
 
 
@@ -26,17 +38,17 @@
 
                 <ul class="list-unstyled components">
                     <li class="active">
-                        <a href="#sports" data-toggle="collapse" aria-expanded="false">
+                        <a href="#buttons" data-toggle="collapse" aria-expanded="false">
                             <i class="glyphicon glyphicon-home"></i>
-                            Lets Play!
+                            Sports!
                         </a>
-                        <ul class="collapse list-unstyled" id="sports">
-                            <li><a href="#">Soccer</a></li>
-                            <li><a href="#">Football</a></li>
-                            <li><a href="#">Basketball</a></li>
-                            <li><a href="#">Baseball</a></li>
-                            <li><a href="#">Softball</a></li>
-                            <li><a href="#">Tennis</a></li>
+                        <ul id="buttons">
+                            <li><data-name="#">Soccer</a></li>
+                            <li><data-name"#">Football</a></li>
+                            <li><data-name"#">Basketball</a></li>
+                            <li><data-name "#">Baseball</a></li>
+                            <li><data-name "#">Softball</a></li>
+                            <li><data-name "#">Tennis</a></li>
 
 
                         </ul>
@@ -102,9 +114,23 @@
                         </div>
                     </div>
                 </nav>
-                 <div class="container">
-                    <div id="googlemaps">
-                        <h2>Meetups Available </h2>
+                 
+                <div class="container">
+
+                    <div id="maps">
+                        <style> 
+                        
+                        #maps {
+                            height: 100%;
+                          }
+                        
+                        #maps {
+                              height: 100%;
+                              margin: 0;
+                             padding: 0;
+    }
+                            
+                        </style>
                         
                      
 
@@ -122,14 +148,19 @@
          <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
          <!-- Bootstrap Js CDN -->
          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+         <!-- Google Maps API -->
+         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC05U7hyAYYT94x7mf8Iiky7ae54hUMaLo&callback=initMap"></script>
 
          <script type="text/javascript">
+
              $(document).ready(function () {
                  $('#sidebarCollapse').on('click', function () {
                      $('#sidebar').toggleClass('active');
                  });
              });
         </script>
+    <script src="app.js"></script>
+        
 
     </body>
 </html>
