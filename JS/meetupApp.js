@@ -44,7 +44,7 @@ function constructURL(sport, lat, lon) {
     return qURL = "https://api.meetup.com/find/upcoming_events?&key=34305b6a752276562604f306a51d76&sign=true&photo-host=public&page=20&text=" + sport + "&lat=" + lat + "lon=" + lng
 };
 
-$("#button").on("click", function () {
+$("#buttons").on("click", function () {
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function (position) {
         var pos2 = {
