@@ -222,6 +222,10 @@ ul.button {
     min-height: 100vh;
     transition: all 0.3s;
 }
+#maps {
+    height: 100%;
+    width: 100%;
+}
 
 
 /* ---------------------------------------------------
