@@ -1,4 +1,4 @@
-var map, infoWindow;
+var map, infoWindow,pos;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: -34.397, lng: 150.644},
@@ -6,7 +6,7 @@ function initMap() {
   });
   infoWindow = new google.maps.InfoWindow;
 
-  
+
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
       var pos = {
@@ -18,6 +18,7 @@ function initMap() {
       infoWindow.setContent('Location found.');
       infoWindow.open(map);
       map.setCenter(pos);
+      console.log('pos:  ', pos);
     }, function() {
       handleLocationError(true, infoWindow, map.getCenter());
     });
@@ -42,6 +43,21 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 
 // $(".sport-button").on("click", function () {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var pos2 = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+    
+          infoWindow.setPosition(pos);
+          infoWindow.setContent('Location found.');
+          infoWindow.open(map);
+          map.setCenter(pos);
+          console.log('pos2:  ', pos2);
+        })
+    };
+
 //     var sport = $(this).val(".sport-button"),
 //     var qURL = "https://api.meetup.com/find/upcoming_events?&key=34305b6a752276562604f306a51d76&sign=true&photo-host=public&page=20&text=" + sport + "&lat=" + lat + "lon=" + lng,
 
