@@ -41,40 +41,46 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 // var lng = pos.lng;
 // var locations = [];
 function constructURL(sport, lat, lon) {
-    return qURL = "https://api.meetup.com/find/upcoming_events?&key=34305b6a752276562604f306a51d76&sign=true&photo-host=public&page=20&text=" + sport + "&lat=" + lat + "lon=" + lng
+    return qURL = "https://api.meetup.com/find/upcoming_events?&key=34305b6a752276562604f306a51d76&sign=true&photo-host=public&page=20&text=" + sport + "&lat=" + pos.lat + "&lon=" + pos.lng
 };
 
-$("#buttons").on("click", function () {
-    console.log ("Button clicked");
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function (position) {
-        var pos2 = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-        };
+var pos = {
+    lat: "",
+    lng: ""
+ };
 
-        infoWindow.setPosition(pos);
-        infoWindow.setContent('Location found.');
-        infoWindow.open(map);
-        map.setCenter(pos);
-        console.log('pos2:  ', pos2);
-    })
-    let sportName = $(this).data("name");
-    console.log(name)
-    $.ajax({
-        url: constructURL (sportName, pos.lat, pos.lng),
-        method: "GET"
-    }).then(function (res) {
-        var lat = res.city.lat;
-        var lng = res.city.lon;
-        var url = res.events.link;
-        var eName = res.events.name;
-    });
-}})
+$("#buttons").on("click", function () {
+    console.log("Button clicked");
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Location found.');
+            infoWindow.open(map);
+            map.setCenter(pos);
+            console.log('pos:  ', pos);
+        })
+        let sportName = $(this).data("name");
+        console.log(name)
+        $.ajax({
+            url: constructURL(sportName, pos.lat, pos.lng),
+            method: "GET"
+        }).then(function (res) {
+            var lat = res.city.lat;
+            var lng = res.city.lon;
+            var url = res.events.link;
+            var eName = res.events.name;
+        });
+    }
+})
 
  //     var sport = $(this).val(".sport-button"),
     //     
-    
+
 
 //         
 
