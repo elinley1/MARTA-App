@@ -70,3 +70,22 @@ if (navigator.geolocation) {
         var eName = res.events.name;
     });
 }})
+
+ //     var sport = $(this).val(".sport-button"),
+    //     
+    
+
+//         
+
+//             var markers = locations.map(function (location, i) {
+//                 return new google.maps.Marker({
+//                     position: location,
+//                     label: sport, eName, url
+//                 });
+//             });
+//             var markerCluster = new MarkerClusterer(map, markers,
+//                 { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
+
+//            //This is where Kenny will loop through the lat and lon for each event and put the property value pairs in an array.
+//            // var location = []        
+//         })})
