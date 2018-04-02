@@ -45,6 +45,7 @@ function constructURL(sport, lat, lon) {
 };
 
 $("#buttons").on("click", function () {
+    console.log ("Button clicked");
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function (position) {
         var pos2 = {
