@@ -5,13 +5,15 @@ function initMap() {
         zoom: 6
     });
     infoWindow = new google.maps.InfoWindow;
-}
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function (position) {
-        var pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-        };
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+
+        onClick( pos );
 
         infoWindow.setPosition(pos);
         infoWindow.setContent('Location found.');
@@ -25,10 +27,26 @@ if (navigator.geolocation) {
 
     handleLocationError(false, infoWindow, map.getCenter());
 }
-$("#buttons").on("click", function () {
-    console.log("Button clicked");
-});
+}
 
+function onClick(pos) {
+    $("#buttons").on("click", function () {
+        console.log("Button clicked");
+        let sportName = $(this).data("name");
+        console.log(name)
+        $.ajax({
+            url: constructURL(sportName, pos),
+            method: "GET"
+        }).then(function (res) {
+            lat = res.city.lat;
+            lng = res.city.lon;
+            var url = res.events.link;
+            var eName = res.events.name;
+        });
+
+        
+    });
+}
 
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
