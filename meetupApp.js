@@ -14,6 +14,7 @@ function initMap() {
             };
 
             onClick(pos);
+            dropPin(pos);
 
             infoWindow.setPosition(pos);
             infoWindow.setContent('Location found.');
@@ -28,7 +29,7 @@ function initMap() {
         handleLocationError(false, infoWindow, map.getCenter());
     }
 }
-function gotIt(response) {
+function gotIt(response){
     console.log('response: ', response);
 }
 function onClick(pos) {
@@ -43,62 +44,50 @@ function onClick(pos) {
             method: "GET",
         }).then(function (res) {
             console.log("Response: ", res);
-            // console.log("NewArray: ", newArray);
-            let latArray = res.events.map(item => {
-                let newObj = {};
-                newObj.lat = item.group.lat;
-                newObj.lon = item.group.lon;
-                return item.group.lat;
-            });
-            return latArray;
-            let lonArray = res.events.map(item => {
-                return item.group.lon;
-            });
-        dropPin();    
+            loopResponse(res.results)
+        })
 
-        });
+
     });
-
-    location = {
-        lat: [],
-        lon: []
-    }
-
-    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-            'Error: The Geolocation service failed.' :
-            'Error: Your browser doesn\'t support geolocation.');
-        infoWindow.open(map);
-    }
-
-    function constructURL(sport, lat, lon) {
-        return qURL = "https://cors-anywhere.herokuapp.com/https://api.meetup.com/find/upcoming_events?page=1?&key=34305b6a752276562604f306a51d76&sign=true&photo-host=public&page=10&text=" + sport + "&lat=" + pos.lat + "&lon=" + pos.lng
-    };
-    eName = " ";
-    eURL = " ";
-
-    // function loopResponse (res){
-    //     res.map(function (r) {         
-    //         locations.lat = events.group.lat;
-    //         locations.lon = events.group.lon;
-    //         console.log("Locations: ", locations.lat, locations.lon)
-    //     });
+}
 
 
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(browserHasGeolocation ?
+        'Error: The Geolocation service failed.' :
+        'Error: Your browser doesn\'t support geolocation.');
+    infoWindow.open(map);
+}
 
-    function dropPin(lat, lon) {
-        let lat = latArray.map(i => {
-            return i.lat;
-            console.log("Single Lat:", lat);
-        });
-        let lon = lonArray.map(i => {
-            return i.lon;
-        });
-        var markers = new google.maps.Marker({
+function constructURL(sport, lat, lon) {
+    return qURL = "https://cors-anywhere.herokuapp.com/https://api.meetup.com/topics.json?page=1?&key=34305b6a752276562604f306a51d76&sign=true&photo-host=public&page=20&text=" + sport + "&lat=" + pos.lat + "&lon=" + pos.lng
+};
+eName = " ";
+eURL = " ";
+
+function loopResponse (res){
+    res.forEach(function (r) {
+        let lat = events.group.lat;
+        let lon = events.group.lon;
+        let json = '{events.group.name}';
+        let eName = JSON.parse(json);
+        console.log("eName: ", eName);
+        let eURL = events.name.link;
+        console.log("Lat & Lon Loop: ", lat, lon);
+        dropPin();
+    });
+  
+};       
+
+
+function dropPin(lat, lon) {
+    var markers =  new google.maps.Marker({
             position: lat, lon,
             map: map,
             label: eName, eURL
         });
     };
-}
+  
+           //This is where Kenny will loop through the lat and lon for each event and put the property value pairs in an array.
+           // var location = []     
