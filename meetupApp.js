@@ -8,7 +8,7 @@ function initMap() {
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
-            var pos = {
+            pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
@@ -58,7 +58,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 
-function constructURL(sport) {
+function constructURL(sport, lat, lon) {
     return qURL = "https://api.meetup.com/find/upcoming_events?&key=34305b6a752276562604f306a51d76&sign=true&photo-host=public&page=20&text=" + sport + "&lat=" + pos.lat + "&lon=" + pos.lng
 };
 
