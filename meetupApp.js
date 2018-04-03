@@ -30,18 +30,21 @@ function initMap() {
 }
 
 function onClick(pos) {
-    $("#buttons").on("click", function () {
+    $(".buttons").on("click", function () {
         console.log("Button clicked");
-        let sportName = $(this).data("name");
-        console.log(name)
+        let sportName = $(this).attr("data-name");
+        console.log("sportName: ", sportName);
+        console.log("This: ", $(this));
         $.ajax({
             url: constructURL(sportName, pos),
             method: "GET"
         }).then(function (res) {
+            console.log("Response: ", res)
             lat = res.city.lat;
             lng = res.city.lon;
             var url = res.events.link;
             var eName = res.events.name;
+            console.log("Lat & lon: ", lat, lng);
         });
 
         
@@ -59,7 +62,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 
 function constructURL(sport, lat, lon) {
-    return qURL = "https://api.meetup.com/find/upcoming_events?&key=34305b6a752276562604f306a51d76&sign=true&photo-host=public&page=20&text=" + sport + "&lat=" + pos.lat + "&lon=" + pos.lng
+    return qURL = "https://cors-anywhere.herokuapp.com/https://api.meetup.com/topics.json?callback=gotIt&page=1?&key=34305b6a752276562604f306a51d76&sign=true&photo-host=public&page=20&text=" + sport + "&lat=" + pos.lat + "&lon=" + pos.lng
 };
 
 
