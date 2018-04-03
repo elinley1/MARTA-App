@@ -1,8 +1,16 @@
 var map, infoWindow, pos;
+var markers = [];
+
 function initMap() {
+    $(".clear-button").on('click', function(e) {
+        e.preventDefault();
+        markers.forEach(function(m) { m.setMap(null); })
+        markers = [];
+    });
+
     map = new google.maps.Map(document.getElementById('maps'), {
         center: { lat: -34.397, lng: 150.644 },
-        zoom: 6
+        zoom: 10
     });
     infoWindow = new google.maps.InfoWindow;
 
@@ -14,11 +22,11 @@ function initMap() {
             };
 
             onClick(pos);
-            dropPin(pos);
+            // dropPin(pos);
 
             infoWindow.setPosition(pos);
             infoWindow.setContent('Location found.');
-            infoWindow.open(map);
+            infoWindow.open(map);   
             map.setCenter(pos);
             console.log('pos:  ', pos);
         }, function () {
@@ -43,8 +51,30 @@ function onClick(pos) {
             url: constructURL(sportName, pos),
             method: "GET",
         }).then(function (res) {
-            console.log("Response: ", res);
-            loopResponse(res.results)
+            let events = res.events.map(function(event) {
+                console.log(event);
+                return {
+                    title: event.name,
+                    animation: google.maps.Animation.DROP,
+                    map: map,
+                    href: event.link,
+                    position: { lat: event.group.lat, lng: event.group.lon }
+                };
+            })
+
+
+            let newMarkers = events.map(element => {
+
+                return new google.maps.Marker(element);
+            });
+
+            newMarkers.forEach(function (m) {
+                google.maps.event.addListener(m, 'click', function () {
+                    window.location.href = this.href;
+                });
+            })
+
+            markers = markers.concat(newMarkers);
         })
 
 
@@ -61,33 +91,5 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 function constructURL(sport, lat, lon) {
-    return qURL = "https://cors-anywhere.herokuapp.com/https://api.meetup.com/topics.json?page=1?&key=34305b6a752276562604f306a51d76&sign=true&photo-host=public&page=20&text=" + sport + "&lat=" + pos.lat + "&lon=" + pos.lng
+    return qURL = "https://cors-anywhere.herokuapp.com/https://api.meetup.com/find/upcoming_events?&key=34305b6a752276562604f306a51d76&sign=true&photo-host=public&page=10&text=" + sport + "&lat=" + pos.lat + "&lon=" + pos.lng
 };
-eName = " ";
-eURL = " ";
-
-function loopResponse (res){
-    res.forEach(function (r) {
-        let lat = events.group.lat;
-        let lon = events.group.lon;
-        let json = '{events.group.name}';
-        let eName = JSON.parse(json);
-        console.log("eName: ", eName);
-        let eURL = events.name.link;
-        console.log("Lat & Lon Loop: ", lat, lon);
-        dropPin();
-    });
-  
-};       
-
-
-function dropPin(lat, lon) {
-    var markers =  new google.maps.Marker({
-            position: lat, lon,
-            map: map,
-            label: eName, eURL
-        });
-    };
-  
-           //This is where Kenny will loop through the lat and lon for each event and put the property value pairs in an array.
-           // var location = []     
