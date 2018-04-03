@@ -5,28 +5,31 @@ function initMap() {
         zoom: 6
     });
     infoWindow = new google.maps.InfoWindow;
-
-
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            var pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
-
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            infoWindow.open(map);
-            map.setCenter(pos);
-            console.log('pos:  ', pos);
-        }, function () {
-            handleLocationError(true, infoWindow, map.getCenter());
-        });
-    } else {
-
-        handleLocationError(false, infoWindow, map.getCenter());
-    }
 }
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+        var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+        };
+
+        infoWindow.setPosition(pos);
+        infoWindow.setContent('Location found.');
+        infoWindow.open(map);
+        map.setCenter(pos);
+        console.log('pos:  ', pos);
+    }, function () {
+        handleLocationError(true, infoWindow, map.getCenter());
+    });
+} else {
+
+    handleLocationError(false, infoWindow, map.getCenter());
+}
+$("#buttons").on("click", function () {
+    console.log("Button clicked");
+});
+
+
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
@@ -37,47 +40,25 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 
-// var lat = pos.lat;
-// var lng = pos.lng;
-// var locations = [];
-function constructURL(sport, lat, lon) {
+function constructURL(sport) {
     return qURL = "https://api.meetup.com/find/upcoming_events?&key=34305b6a752276562604f306a51d76&sign=true&photo-host=public&page=20&text=" + sport + "&lat=" + pos.lat + "&lon=" + pos.lng
 };
 
-var pos = {
-    lat: "",
-    lng: ""
- };
 
-$("#buttons").on("click", function () {
-    console.log("Button clicked");
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            var pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
+//         let sportName = $(this).data("name");
+//         console.log(name)
+        // $.ajax({
+        //     url: constructURL(sportName, lat, lng),
+        //     method: "GET"
+        // }).then(function (res) {
+        //     lat = res.city.lat;
+        //     lng = res.city.lon;
+        //     var url = res.events.link;
+        //     var eName = res.events.name;
+        // });
 
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            infoWindow.open(map);
-            map.setCenter(pos);
-            console.log('pos:  ', pos);
-        })
-        let sportName = $(this).data("name");
-        console.log(name)
-        $.ajax({
-            url: constructURL(sportName, pos.lat, pos.lng),
-            method: "GET"
-        }).then(function (res) {
-            var lat = res.city.lat;
-            var lng = res.city.lon;
-            var url = res.events.link;
-            var eName = res.events.name;
-        });
-    }
-})
-
+// });
+// }
  //     var sport = $(this).val(".sport-button"),
     //     
 
