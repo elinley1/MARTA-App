@@ -37,11 +37,8 @@ function initMap() {
         handleLocationError(false, infoWindow, map.getCenter());
     }
 }
-function gotIt(response){
-    console.log('response: ', response);
-}
-function onClick(pos) {
 
+function onClick(pos) {
     $(".buttons").on("click", function () {
         console.log("Button clicked");
         let sportName = $(this).attr("data-name");
@@ -80,7 +77,6 @@ function onClick(pos) {
 
     });
 }
-
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
